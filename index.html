@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>南方医科大学药学院 | 2021级就业报告</title>
+    <style>
+        /* 全局样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "SF Pro Display", "SF Pro Icons", "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+        
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+        
+        /* 段落样式 */
+        p {
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeUp 0.8s forwards;
+            animation-delay: calc(var(--index) * 0.2s);
+        }
+        
+        section {
+            padding: 6rem 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* 容器样式 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        /* 标题样式 */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(180deg, #000 0%, #181818 100%);
+        }
+        
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #9CF 0%, #5AC8FA 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+        
+        .hero h2 {
+            font-size: 2rem;
+            font-weight: 300;
+            margin-bottom: 2rem;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 0.5s;
+        }
+        
+        .hero-subtitle {
+            color: #999;
+            font-size: 1.5rem;
+            max-width: 800px;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 1s;
+        }
+        
+        /* 部分标题 */
+        .section-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            background: linear-gradient(90deg, #FF9500 0%, #FF2D55 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards;
+        }
+        
+        /* 数据展示区域 */
+        .stats-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin: 4rem 0;
+        }
+        
+        .stat-item {
+            width: 30%;
+            text-align: center;
+            margin-bottom: 3rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s forwards;
+            animation-delay: calc(var(--index) * 0.2s);
+        }
+        
+        .stat-number {
+            font-size: 5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            background: linear-gradient(90deg, #5AC8FA 0%, #3498db 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .stat-label {
+            font-size: 1.2rem;
+            color: #999;
+        }
+        
+        /* 特色企业展示 */
+        .companies {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 3rem;
+        }
+        
+        .company-item {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 15px;
+            margin: 1rem;
+            width: calc(33.33% - 2rem);
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s forwards;
+            animation-delay: calc(var(--index) * 0.15s);
+        }
+        
+        .company-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .company-type {
+            color: #999;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* 图表区域 */
+        .chart-container {
+            width: 100%;
+            height: 500px;
+            margin: 4rem 0;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 1s forwards;
+            animation-delay: 0.3s;
+        }
+        
+        /* 特点列表 */
+        .feature-list {
+            margin: 3rem 0;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 2.5rem;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeUp 0.8s forwards;
+            animation-delay: calc(var(--index) * 0.2s);
+        }
+        
+        .feature-icon {
+            font-size: 2rem;
+            margin-right: 1.5rem;
+            color: #5AC8FA;
+        }
+        
+        .feature-content {
+            flex: 1;
+        }
+        
+        .feature-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        
+        .feature-description {
+            color: #999;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+        
+        /* 引用样式 */
+        .quote-section {
+            text-align: center;
+            padding: 8rem 0;
+            background: linear-gradient(180deg, #000 0%, #111 100%);
+        }
+        
+        .quote {
+            font-size: 2rem;
+            font-weight: 300;
+            font-style: italic;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+        
+        .quote:before, .quote:after {
+            content: '"';
+            color: #5AC8FA;
+            font-size: 4rem;
+            position: absolute;
+        }
+        
+        .quote:before {
+            top: -2rem;
+            left: -2rem;
+        }
+        
+        .quote:after {
+            bottom: -3rem;
+            right: -2rem;
+        }
+        
+        /* 结尾号召 */
+        .cta {
+            text-align: center;
+            padding: 8rem 0;
+        }
+        
+        .cta-title {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            background: linear-gradient(90deg, #FF9500 0%, #FF2D55 100%);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+        }
+        
+        .cta-description {
+            max-width: 700px;
+            margin: 0 auto 3rem;
+            font-size: 1.3rem;
+            color: #999;
+            opacity: 0;
+            animation: fadeIn 1.5s forwards;
+            animation-delay: 0.5s;
+        }
+        
+        /* 底部 */
+        footer {
+            padding: 3rem 0;
+            text-align: center;
+            background-color: #111;
+            color: #666;
+        }
+        
+        /* 动画 */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* 响应式设计 */
+        @media (max-width: 992px) {
+            .stat-item {
+                width: 45%;
+            }
+            
+            .company-item {
+                width: calc(50% - 2rem);
+            }
+            
+            .hero h1 {
+                font-size: 4rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .stat-item {
+                width: 100%;
+            }
+            
+            .company-item {
+                width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 标题部分 -->
+    <section class="hero">
+        <h1>2021级药学院就业报告</h1>
+        <h2>南方医科大学药学院</h2>
+        <p class="hero-subtitle">高质量就业 · 优势突出 · 前景广阔</p>
+    </section>
+    
+    <!-- 概览部分 -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">总体概览</h2>
+            <p style="--index: 1">南方医科大学药学院2021级毕业生就业情况呈现出了极其亮眼的发展态势，充分体现了我院在培养高素质医药人才方面的卓越成效和鲜明特色。毕业生不仅在国内外知名学府深造，还在各大医药企业、医疗机构和科研院所实现高质量就业。</p>
+            
+            <div class="stats-container">
+                <div class="stat-item" style="--index: 2">
+                    <div class="stat-number">170</div>
+                    <div class="stat-label">毕业生总人数</div>
+                </div>
+                
+                <div class="stat-item" style="--index: 3">
+                    <div class="stat-number">59%</div>
+                    <div class="stat-label">继续深造比例</div>
+                </div>
+                
+                <div class="stat-item" style="--index: 4">
+                    <div class="stat-number">29%</div>
+                    <div class="stat-label">优质就业比例</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 升学情况 -->
+    <section style="background: linear-gradient(180deg, #000 0%, #111 100%);">
+        <div class="container">
+            <h2 class="section-title">升学深造</h2>
+            
+            <div class="stats-container">
+                <div class="stat-item" style="--index: 1">
+                    <div class="stat-number">74</div>
+                    <div class="stat-label">境内升学人数</div>
+                </div>
+                
+                <div class="stat-item" style="--index: 2">
+                    <div class="stat-number">3</div>
+                    <div class="stat-label">境外留学人数</div>
+                </div>
+                
+                <div class="stat-item" style="--index: 3">
+                    <div class="stat-number">23</div>
+                    <div class="stat-label">拟升学人数</div>
+                </div>
+            </div>
+            
+            <p style="--index: 4">2021级毕业生中，近60%选择继续深造。74名学生在国内一流高校读研深造，3名学生赴境外著名学府留学，另有23名学生正在积极准备深造。这一数据充分体现了我院浓厚的学术氛围和学生卓越的科研能力。</p>
+        </div>
+    </section>
+    
+    <!-- 就业情况 -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">就业分布</h2>
+            
+            <div class="stats-container">
+                <div class="stat-item" style="--index: 1">
+                    <div class="stat-number">38</div>
+                    <div class="stat-label">签就业协议形式就业</div>
+                </div>
+                
+                <div class="stat-item" style="--index: 2">
+                    <div class="stat-number">11</div>
+                    <div class="stat-label">签劳动合同形式就业</div>
+                </div>
+                
+                <div class="stat-item" style="--index: 3">
+                    <div class="stat-number">42+</div>
+                    <div class="stat-label">就业单位总数</div>
+                </div>
+            </div>
+            
+            <div class="chart-container" id="employmentChart">
+                <!-- 这里将通过JavaScript插入图表 -->
+            </div>
+            
+            <p style="--index: 4">我院毕业生就业范围广泛，涵盖药企、医院、科研机构及政府部门等多个领域，充分展现了药学专业的广阔就业前景和多元化发展方向。在直接就业的毕业生中，有49人通过签订就业协议或劳动合同形式实现高质量就业，占总人数的29%。</p>
+        </div>
+    </section>
+    
+    <!-- 杰出企业 -->
+    <section style="background: linear-gradient(180deg, #111 0%, #000 100%);">
+        <div class="container">
+            <h2 class="section-title">杰出就业去向</h2>
+            
+            <div class="companies">
+                <div class="company-item" style="--index: 1">
+                    <div class="company-name">正大天晴药业集团</div>
+                    <div class="company-type">知名制药企业</div>
+                    <p>国内领先的创新型医药企业，多名毕业生在此从事药物研发与质量控制工作。</p>
+                </div>
+                
+                <div class="company-item" style="--index: 2">
+                    <div class="company-name">丽珠医药集团</div>
+                    <div class="company-type">上市医药企业</div>
+                    <p>国内知名的医药健康产业集团，毕业生参与创新药物研发与生产。</p>
+                </div>
+                
+                <div class="company-item" style="--index: 3">
+                    <div class="company-name">广州万孚生物技术</div>
+                    <div class="company-type">生物医药科技公司</div>
+                    <p>专注于体外诊断领域的创新型高科技企业，毕业生在此参与生物医药产品研发。</p>
+                </div>
+                
+                <div class="company-item" style="--index: 4">
+                    <div class="company-name">广州医科大学附属第一医院</div>
+                    <div class="company-type">三甲医院</div>
+                    <p>广州呼吸中心所在地，毕业生在此从事临床药学与药事管理工作。</p>
+                </div>
+                
+                <div class="company-item" style="--index: 5">
+                    <div class="company-name">中山大学附属第八医院</div>
+                    <div class="company-type">综合性医疗机构</div>
+                    <p>深圳地区重点医疗机构，毕业生在此开展临床药学服务。</p>
+                </div>
+                
+                <div class="company-item" style="--index: 6">
+                    <div class="company-name">国药控股</div>
+                    <div class="company-type">医药流通国企</div>
+                    <p>中国最大的药品、医疗保健产品分销商和零售商，毕业生在此参与医药流通与管理。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 优势特点 -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">就业优势</h2>
+            
+            <div class="feature-list">
+                <div class="feature-item" style="--index: 1">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">专业对口率高</h3>
+                        <p class="feature-description">2021级毕业生就业单位多与医药相关，专业对口率高，充分发挥了药学专业知识与技能优势。</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item" style="--index: 2">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">就业企业质量高</h3>
+                        <p class="feature-description">多名毕业生进入行业领军企业、三甲医院和知名科研机构，就业单位层次高、发展前景好。</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item" style="--index: 3">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">升学深造比例高</h3>
+                        <p class="feature-description">近60%的毕业生选择继续深造，体现出我院学术氛围浓厚，学生科研能力突出的特点。</p>
+                    </div>
+                </div>
+                
+                <div class="feature-item" style="--index: 4">
+                    <div class="feature-icon">✓</div>
+                    <div class="feature-content">
+                        <h3 class="feature-title">就业地域分布广</h3>
+                        <p class="feature-description">毕业生就业不局限于珠三角地区，遍布全国各地，部分学生还选择境外发展，展现了广阔的就业视野。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- 引用部分 -->
+    <section class="quote-section">
+        <div class="container">
+            <div class="quote">
+                药学专业作为医药卫生领域的重要支柱学科，具有极其广阔的就业前景。随着医药产业的蓬勃发展、"健康中国"战略的深入实施以及人口老龄化趋势下医药需求的持续增长，药学专业人才将持续保持旺盛需求。
+            </div>
+        </div>
+    </section>
+    
+    <!-- 结尾号召 -->
+    <section class="cta">
+        <div class="container">
+            <h2 class="cta-title">选择南方医科大学药学院</h2>
+            <p class="cta-description">您将获得扎实的专业知识、丰富的实践机会和广阔的职业发展空间，无论是继续深造还是直接就业，都将拥有光明的前景和无限的可能！</p>
+        </div>
+    </section>
+    
+    <footer>
+        <div class="container">
+            <p>南方医科大学药学院 © 2025 | 2021级就业质量报告</p>
+        </div>
+    </footer>
+    
+    <!-- 引入Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <script>
+        // 为所有元素设置动画延迟
+        document.addEventListener('DOMContentLoaded', function() {
+            // 设置滚动时的动画
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.animationDelay = entry.target.style.getPropertyValue('--index') * 0.2 + 's';
+                        entry.target.style.animationPlayState = 'running';
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+            
+            document.querySelectorAll('.stat-item, .company-item, .feature-item, p[style*="--index"]').forEach(item => {
+                observer.observe(item);
+            });
+            
+            // 创建就业分布图表
+            const ctx = document.getElementById('employmentChart');
+            
+            new Chart(ctx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['境内升学', '签就业协议形式就业', '不就业拟升学', '签劳动合同形式就业', '自由职业', '待就业', '境外留学', '其他'],
+                    datasets: [{
+                        data: [74, 38, 23, 11, 8, 8, 3, 5],
+                        backgroundColor: [
+                            '#5AC8FA',
+                            '#FF9500',
+                            '#34C759',
+                            '#FF2D55',
+                            '#AF52DE',
+                            '#FFD60A',
+                            '#BF5AF2',
+                            '#64D2FF'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                            labels: {
+                                color: '#fff',
+                                font: {
+                                    size: 14
+                                },
+                                padding: 20
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ${value}人 (${percentage}%)`;
+                                }
+                            }
+                        }
+                    },
+                    cutout: '60%',
+                    animation: {
+                        animateScale: true,
+                        animateRotate: true
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
